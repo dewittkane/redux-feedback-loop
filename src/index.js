@@ -7,10 +7,16 @@ import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
+const feedbackReducer = (state = {}, action) => {
+    if (action.type === 'ADD_FEEDBACK') {
+        return Object.assign(action.payload, state)
+    }
+    return state
+}
 
 const store = createStore(
     combineReducers({
-        
+        feedbackReducer
     }),
     applyMiddleware(logger)
 );
