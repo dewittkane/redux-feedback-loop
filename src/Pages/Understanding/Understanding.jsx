@@ -13,11 +13,14 @@ class Understanding extends Component {
   }
 
   handleNextToSupport = () => {
+    if (this.state.understanding > 0) { 
     this.props.dispatch({
       type: 'ADD_FEEDBACK', payload: this.state
   });
     this.props.history.push('/support');
-}
+  } else {
+    alert("Please make a selection!");
+  }};
 
     render() {
         return(

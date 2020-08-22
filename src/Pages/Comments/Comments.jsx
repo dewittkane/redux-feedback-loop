@@ -13,11 +13,14 @@ class Comments extends Component {
     }
 
     handleNextToReview = () => {
+      if (this.state.comment !== '') {
       this.props.dispatch({
         type: 'ADD_FEEDBACK', payload: this.state
     });
       this.props.history.push('/review');
-  }
+  } else {
+    alert("Please leave some feedback!")
+  }}
 
     render() {
         return(

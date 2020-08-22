@@ -13,11 +13,14 @@ class Support extends Component {
   }
 
   handleNextToComments = () => {
+    if (this.state.support > 0) {
     this.props.dispatch({
       type: 'ADD_FEEDBACK', payload: this.state
   });
     this.props.history.push('/comments');
-}
+} else {
+  alert("Please make a selection!");
+}}
 
     render() {
         return(

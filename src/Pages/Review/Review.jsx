@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 
 class Review extends Component {
 
     handleSubmit = () => {
         console.log('Handle Submit Clicked');
+        axios.post('/')
         this.props.history.push('/');
     };
 

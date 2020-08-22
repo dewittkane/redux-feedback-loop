@@ -13,11 +13,14 @@ class Feeling extends Component {
   }
 
   handleNextToUnderstanding = () => {
+    if(this.state.feeling > 0) {
     this.props.dispatch({
       type: 'ADD_FEEDBACK', payload: this.state
   });
     this.props.history.push('/understanding');
-}
+  } else {
+    alert("Please make a selection!");
+  }}
 
     render() {
         return(
