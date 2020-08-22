@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { LinearProgress } from '@material-ui/core';
+
 
 class Review extends Component {
 
@@ -17,6 +19,8 @@ class Review extends Component {
     render() {
         return(
             <div>
+                <br/>
+                <LinearProgress variant="determinate" value={99} />
                 <h3>Review Your Feedback</h3>
                 <p>Feelings: {this.props.reduxState.feedbackReducer.feeling}</p>
                 <p>Understanding: {this.props.reduxState.feedbackReducer.understanding}</p>

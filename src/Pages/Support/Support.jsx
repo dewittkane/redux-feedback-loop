@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { LinearProgress } from '@material-ui/core';
+
 class Support extends Component {
   state = {
     support: 0
@@ -20,11 +22,17 @@ class Support extends Component {
     this.props.history.push('/comments');
 } else {
   alert("Please make a selection!");
-}}
+}};
+
+handleBackToUnderstanding = () => {
+  this.props.history.push('/understanding');
+};
 
     render() {
         return(
           <div>
+            <br/>
+            <LinearProgress variant="determinate" value={60} />
             <h3>How well are you being supported?</h3>
             <input onChange={this.handleRadioChange} type="radio" id="1" name="support" value="1"/>
             <label htmlFor="1">1</label>
@@ -36,6 +44,7 @@ class Support extends Component {
             <label htmlFor="4">4</label>
             <input onChange={this.handleRadioChange} type="radio" id="5" name="support" value="5"/>
             <label htmlFor="5">5</label>
+            <button onClick={() => this.handleBackToUnderstanding()}>Back</button>
             <button onClick={() => this.handleNextToComments()}>Next</button>
           </div>
         );

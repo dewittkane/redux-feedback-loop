@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { LinearProgress } from '@material-ui/core';
+
 class Comments extends Component {
 
     state = {
@@ -20,13 +22,20 @@ class Comments extends Component {
       this.props.history.push('/review');
   } else {
     alert("Please leave some feedback!")
-  }}
+  }};
+
+  handleBackToSupport = () => {
+    this.props.history.push('/support');
+  };
 
     render() {
         return(
             <div>
+              <br/>
+              <LinearProgress variant="determinate" value={85} />
               <h3>Any comments you want to leave?</h3>
               <input type="text" onChange={(event) => this.handleChangeForComments(event)}></input>
+              <button onClick={() => this.handleBackToSupport()}>Back</button>
               <button onClick={() => this.handleNextToReview()}>Next</button>
             </div>
         );

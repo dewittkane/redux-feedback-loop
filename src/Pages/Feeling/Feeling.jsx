@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { LinearProgress } from '@material-ui/core';
+
 class Feeling extends Component {
   state = {
     feeling: 0
@@ -25,6 +27,8 @@ class Feeling extends Component {
     render() {
         return(
           <div>
+            <br/>
+            <LinearProgress variant="determinate" value={10} />
             <h3>How are you feeling today?</h3>
             <input onChange={this.handleRadioChange} type="radio" id="1" name="feeling" value="1"/>
             <label htmlFor="1">1</label>
