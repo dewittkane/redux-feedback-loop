@@ -7,7 +7,7 @@ import Understanding from '../../Pages/Understanding/Understanding.jsx';
 import Support from '../../Pages/Support/Support.jsx';
 import Comments from '../../Pages/Comments/Comments.jsx';
 import Review from '../../Pages/Review/Review.jsx';
-
+import Success from '../../Pages/Success/Success.jsx';
 
 
 
@@ -28,6 +28,8 @@ class App extends Component {
         <Route path="/support" component={Support} />
         <Route path="/comments" component={Comments} />
         <Route path="/review" component={Review} />
+        <Route path="/success" component={Success} />
+
       </Router>
     );
   }

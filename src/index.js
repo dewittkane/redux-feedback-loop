@@ -9,11 +9,18 @@ import { Provider } from 'react-redux';
 
 const feedbackReducer = (state = {}, action) => {
     if (action.type === 'ADD_FEEDBACK') {
+
+        //builds the state object
         return Object.assign(action.payload, state)
+    } else if (action.type === 'RESTART') {
+
+        //resets state when restarting the app
+        return {};
     }
     return state
 }
 
+//redux store - holds all of our reducers
 const store = createStore(
     combineReducers({
         feedbackReducer
