@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 class Comments extends Component {
 
     state = {
-      comment: ''
+      comments: ''
     }
 
-    handleChangeForComment = (event) => {
+    handleChangeForComments = (event) => {
       this.setState({
-        comment: event.target.value
+        comments: event.target.value
       })
     }
 
     handleNextToReview = () => {
-      if (this.state.comment !== '') {
+      if (this.state.comments !== '') {
       this.props.dispatch({
         type: 'ADD_FEEDBACK', payload: this.state
     });
@@ -26,7 +26,7 @@ class Comments extends Component {
         return(
             <div>
               <h3>Any comments you want to leave?</h3>
-              <input type="text" onChange={(event) => this.handleChangeForComment(event)}></input>
+              <input type="text" onChange={(event) => this.handleChangeForComments(event)}></input>
               <button onClick={() => this.handleNextToReview()}>Next</button>
             </div>
         );

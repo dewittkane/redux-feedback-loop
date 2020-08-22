@@ -6,8 +6,12 @@ class Review extends Component {
 
     handleSubmit = () => {
         console.log('Handle Submit Clicked');
-        axios.post('/')
-        this.props.history.push('/');
+        axios.post('/feedback', this.props.reduxState.feedbackReducer)
+            .then(response => {
+                this.props.history.push('/');
+            }).catch(error => {
+                console.log('error in post', error);
+            })
     };
 
     render() {
