@@ -23,7 +23,7 @@ const feedbackReducer = (state = {comments: '', feeling: 0, understanding: 0, su
                 stateWithKeyRemoved = Object.assign({[key]: state[key]}, stateWithKeyRemoved)
                 console.log(stateWithKeyRemoved);
             }
-        };
+        };//rebuilds the object without the key
         console.log(stateWithKeyRemoved);
         return stateWithKeyRemoved
 
