@@ -7,31 +7,30 @@ import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-const feedbackReducer = (state = {}, action) => {
+const feedbackReducer = (state = {comments: '', feeling: 0, understanding: 0, support: 0}, action) => {
     if (action.type === 'ADD_FEEDBACK') {
 
         //builds the state object
         return Object.assign(action.payload, state)
 
     } else if (action.type === 'REMOVE_FEEDBACK') {
-        let stateWithKeyRemoved = {};
+
         console.log('removing feedback');
+        
+        let stateWithKeyRemoved = {};
         for (const key in state) {
-            console.log(state);
-            console.log(key);
-            console.log(action.payload);
-            
             if (key !== action.payload) {
                 stateWithKeyRemoved = Object.assign({[key]: state[key]}, stateWithKeyRemoved)
                 console.log(stateWithKeyRemoved);
             }
         };
+        console.log(stateWithKeyRemoved);
         return stateWithKeyRemoved
 
     } else if (action.type === 'RESTART') {
 
         //resets state when restarting the app
-        return {};
+        return {comments: '', feeling: 0, understanding: 0, support: 0};
     }
     return state
 }

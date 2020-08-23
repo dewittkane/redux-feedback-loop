@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Review.css'
 import { connect } from 'react-redux';
-import { LinearProgress } from '@material-ui/core';
+import { Button, Card, Grid, LinearProgress } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 
 
@@ -23,12 +24,16 @@ class Review extends Component {
                 <br/>
                 <LinearProgress variant="determinate" value={99} />
                 <h3>Review Your Feedback</h3>
-                <p onClick={() => {this.props.history.push('/feelings')}}>Feelings: {this.props.reduxState.feedbackReducer.feeling}</p>
-                <p onClick={() => {this.props.history.push('/understanding')}}>Understanding: {this.props.reduxState.feedbackReducer.understanding}</p>
-                <p onClick={() => {this.props.history.push('/support')}}>Support: {this.props.reduxState.feedbackReducer.support}</p>
-                <p onClick={() => {this.props.history.push('/comments')}}>Comments: {this.props.reduxState.feedbackReducer.comments}</p>
+                <Grid container spacing={0} alignItems="center" direction="column" justify="center">
+                    <Card className="reviewCard">
+                        <p onClick={() => {this.props.history.push('/feeling')}}>Feelings: {this.props.reduxState.feedbackReducer.feeling}</p>
+                        <p onClick={() => {this.props.history.push('/understanding')}}>Understanding: {this.props.reduxState.feedbackReducer.understanding}</p>
+                        <p onClick={() => {this.props.history.push('/support')}}>Support: {this.props.reduxState.feedbackReducer.support}</p>
+                        <p onClick={() => {this.props.history.push('/comments')}}>Comments: {this.props.reduxState.feedbackReducer.comments}</p>
+                    </Card>
+                </Grid>
                 <p>Click any feedback to go back and edit, or click below to submit!</p>
-                <button onClick={this.handleSubmit}>Submit</button>
+                <Button variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
             </div>
         );
     };

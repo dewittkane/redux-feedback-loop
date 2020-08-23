@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { LinearProgress } from '@material-ui/core';
+import { Box, Button, LinearProgress, Radio, RadioGroup, FormControl, FormControlLabel } from '@material-ui/core';
 
 class Feeling extends Component {
 
   componentDidMount(){
     this.setState({
       selectedValue: this.props.reduxState.feedbackReducer.feeling
-    }, () => {if (this.state.selectedValue){
+    }, () => {
       this.props.dispatch({
       type: 'REMOVE_FEEDBACK', payload: "feeling"
-    })}})
+    })})
   };
 
   state = {
@@ -24,14 +24,10 @@ class Feeling extends Component {
      )};
 
   handleNextToUnderstanding = () => {
-    if(this.state.selectedValue) {
     this.props.dispatch({
-      type: 'ADD_FEEDBACK', payload: {feeling: this.state.selectedValue}
-  });
+      type: 'ADD_FEEDBACK', payload: {feeling: this.state.selectedValue}});
     this.props.history.push('/understanding');
-  } else {
-    alert("Please make a selection!");
-  }}
+    };
 
     render() {
         return(
@@ -39,17 +35,18 @@ class Feeling extends Component {
             <br/>
             <LinearProgress variant="determinate" value={10} />
             <h3>How are you feeling today?</h3>
-            <input onChange={this.handleRadioChange} type="radio" id="1" name="feeling" value="1" checked={this.state.selectedValue === "1"}/>
-            <label htmlFor="1">1</label>
-            <input onChange={this.handleRadioChange} type="radio" id="2" name="feeling" value="2" checked={this.state.selectedValue === "2"}/>
-            <label htmlFor="2">2</label>
-            <input onChange={this.handleRadioChange} type="radio" id="3" name="feeling" value="3" checked={this.state.selectedValue === "3"}/>
-            <label htmlFor="3">3</label>
-            <input onChange={this.handleRadioChange} type="radio" id="4" name="feeling" value="4" checked={this.state.selectedValue === "4"}/>
-            <label htmlFor="4">4</label>
-            <input onChange={this.handleRadioChange} type="radio" id="5" name="feeling" value="5" checked={this.state.selectedValue === "5"}/>
-            <label htmlFor="5">5</label>
-            <button onClick={() => this.handleNextToUnderstanding()}>Next</button>
+            <FormControl component="fieldset">
+              <RadioGroup row aria-label="feeling" name="feeling" value={this.state.selectedValue} onChange={this.handleRadioChange}>
+                <FormControlLabel labelPlacement="bottom" value="1" control={<Radio color="primary"/>} label="1" />
+                <FormControlLabel labelPlacement="bottom" value="2" control={<Radio color="primary"/>} label="2" />
+                <FormControlLabel labelPlacement="bottom" value="3" control={<Radio color="primary"/>} label="3" />
+                <FormControlLabel labelPlacement="bottom" value="4" control={<Radio color="primary"/>} label="4" />
+                <FormControlLabel labelPlacement="bottom" value="5" control={<Radio color="primary"/>} label="5" />
+              </RadioGroup>
+            </FormControl>
+            <Box>
+              { this.state.selectedValue ? <Button variant="contained" onClick={() => this.handleNextToUnderstanding()}>Next</Button> : <Button variant="contained" disabled >Next</Button>}
+            </Box>
           </div>
         );
     };

@@ -20,16 +20,16 @@ class App extends Component {
                 <h1 className="App-title">Feedback!</h1>
                 <h4><i>Don't forget it!</i></h4>
             </header>
+
+
+          <Route exact path="/" component={Home} />
+          <Route path="/feeling" component={Feeling} />
+          <Route path="/understanding" component={Understanding} />
+          <Route path="/support" component={Support} />
+          <Route path="/comments" component={Comments} />
+          <Route path="/review" component={Review} />
+          <Route path="/success" component={Success} />
         </div>
-
-        <Route exact path="/" component={Home} />
-        <Route path="/feeling" component={Feeling} />
-        <Route path="/understanding" component={Understanding} />
-        <Route path="/support" component={Support} />
-        <Route path="/comments" component={Comments} />
-        <Route path="/review" component={Review} />
-        <Route path="/success" component={Success} />
-
       </Router>
     );
   }

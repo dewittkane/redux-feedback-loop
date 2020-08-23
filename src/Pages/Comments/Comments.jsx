@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { LinearProgress } from '@material-ui/core';
+import { Box, Button, LinearProgress, TextField } from '@material-ui/core';
 
 class Comments extends Component {
 
@@ -8,10 +8,10 @@ class Comments extends Component {
   componentDidMount(){
     this.setState({
       comments: this.props.reduxState.feedbackReducer.comments
-    },  () => {if (this.state.comments){
+    },  () => {
       this.props.dispatch({
       type: 'REMOVE_FEEDBACK', payload: "comments"
-    })}})
+    })})
   };
 
     state = {
@@ -22,15 +22,13 @@ class Comments extends Component {
       this.setState({
         comments: event.target.value
       })
+      console.log(this.state);
     }
 
     handleNextToReview = () => {
-      if (this.state.comments) {
       this.addFeedback();
       this.props.history.push('/review');
-    } else {
-      alert("Please leave some feedback!")
-    }};
+    };
 
     handleBackToSupport = () => {
       this.addFeedback();
@@ -47,10 +45,12 @@ class Comments extends Component {
             <div>
               <br/>
               <LinearProgress variant="determinate" value={85} />
-              <h3>Any comments you want to leave?</h3>
-              <input type="text" value={this.state.comments} onChange={(event) => this.handleChangeForComments(event)}></input>
-              <button onClick={() => this.handleBackToSupport()}>Back</button>
-              <button onClick={() => this.handleNextToReview()}>Next</button>
+              <h3>Please leave a comment!</h3>
+              <TextField value={this.state.comments} onChange={(event) => this.handleChangeForComments(event)} label="Feedback" variant="outlined" />
+              <Box>
+                <Button variant="contained" onClick={() => this.handleBackToSupport()}>Back</Button>
+                { this.state.comments ? <Button variant="contained" onClick={() => this.handleNextToReview()}>Next</Button> : <Button variant="contained" disabled >Next</Button>}
+              </Box>
             </div>
         );
     };
