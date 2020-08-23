@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { LinearProgress } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 
 
 class Review extends Component {
@@ -22,10 +23,11 @@ class Review extends Component {
                 <br/>
                 <LinearProgress variant="determinate" value={99} />
                 <h3>Review Your Feedback</h3>
-                <p>Feelings: {this.props.reduxState.feedbackReducer.feeling}</p>
-                <p>Understanding: {this.props.reduxState.feedbackReducer.understanding}</p>
-                <p>Support: {this.props.reduxState.feedbackReducer.support}</p>
-                <p>Comments: {this.props.reduxState.feedbackReducer.comments}</p>
+                <p onClick={() => {this.props.history.push('/feelings')}}>Feelings: {this.props.reduxState.feedbackReducer.feeling}</p>
+                <p onClick={() => {this.props.history.push('/understanding')}}>Understanding: {this.props.reduxState.feedbackReducer.understanding}</p>
+                <p onClick={() => {this.props.history.push('/support')}}>Support: {this.props.reduxState.feedbackReducer.support}</p>
+                <p onClick={() => {this.props.history.push('/comments')}}>Comments: {this.props.reduxState.feedbackReducer.comments}</p>
+                <p>Click any feedback to go back and edit, or click below to submit!</p>
                 <button onClick={this.handleSubmit}>Submit</button>
             </div>
         );
@@ -37,4 +39,4 @@ const mapStateToProps = (reduxState) => {
     reduxState
   }
 }
-export default connect(mapStateToProps)(Review);
+export default connect(mapStateToProps)(withRouter(Review));

@@ -12,6 +12,22 @@ const feedbackReducer = (state = {}, action) => {
 
         //builds the state object
         return Object.assign(action.payload, state)
+
+    } else if (action.type === 'REMOVE_FEEDBACK') {
+        let stateWithKeyRemoved = {};
+        console.log('removing feedback');
+        for (const key in state) {
+            console.log(state);
+            console.log(key);
+            console.log(action.payload);
+            
+            if (key !== action.payload) {
+                stateWithKeyRemoved = Object.assign({[key]: state[key]}, stateWithKeyRemoved)
+                console.log(stateWithKeyRemoved);
+            }
+        };
+        return stateWithKeyRemoved
+
     } else if (action.type === 'RESTART') {
 
         //resets state when restarting the app
